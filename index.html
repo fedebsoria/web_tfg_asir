@@ -11,10 +11,14 @@
     <h2>Applicación Web para registro de ventas</h2>
     <div id="log-in-container">
         <h2 id="log-in-title">Inicio de sesión</h2>
-        <form>
-            Usuario: <input name="user" type="text">
-            Contraseña: <input name="password" type="password">
+        <form id=""login-form>
+            <label for="user_name">Usuario</label>
+            <input id="user_name" name="user_name" type="text" required>
+            <label for="password">Contraseña</label>
+            <input id="password" name="password" type="password" required>
             <input type="submit" value="Entrar">
         </form>
+
+        <p id="login-message"></p>
     </div>
 </body>
