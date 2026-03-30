@@ -145,3 +145,9 @@ h1 {
   transition: 0.15s;
 }
 
+#logout-button {
+  background-color: #ff834a;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #000;
+  transition: 0.15s;
+}
