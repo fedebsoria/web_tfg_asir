@@ -15,8 +15,8 @@ app = Flask(
 DB_CONFIG = {
     "host": "127.0.0.1",
     "port": 3306,
-    "user": "TU_USUARIO_MARIADB",
-    "password": "TU_PASSWORD_MARIADB",
+    "user": "MY_USER",
+    "password": "MY_USER_PASS",
     "database": "mundoChip"
 }
 
