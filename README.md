@@ -1,5 +1,3 @@
-## README.md actualizado
-
 ```
 # 🌐 MundoChip - Web Sales App
 
