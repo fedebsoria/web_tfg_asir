@@ -17,11 +17,11 @@ app = Flask(
 app.secret_key = "clave_super_segura_para_sesiones_2026"
 
 DB_CONFIG = {
-    "host": "127.0.0.1",
-    "port": 3306,
-    "user": "root",
-    "password": "DB_USER", # < --- CHANGE THIS. PUT THE ACTUAL USER OF THE DB.
-    "database": "DB_USER_PASSWORD" # < -- CHANGE THIS. PUT THE USER'S DB PASSWORD.
+    "host": "127.0.0.1", # < --- CHANGE THIS. IF THE DB IS NOT LOCAL.
+    "port": 3306, # < --- CHANGE THIS. TO THE DB PORT.
+    "user": "DB_USER", # < --- CHANGE THIS. PUT THE ACTUAL USER OF THE DB.
+    "password": "DB_PASSWORD", # < -- CHANGE THIS. PUT THE USER'S DB PASSWORD.
+    "database": "DB_NAME" # < -- CHANGE THIS. PUT THE DB NAME.
 }
 
 
