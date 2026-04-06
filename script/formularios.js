@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  
     const logoutButton = document.getElementById("logout-button");
     const saveSaleForm = document.getElementById("save-sale-form");
     const newOrderButton = document.getElementById("new-order-button");
@@ -8,7 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const orderTotal = detailBox?.querySelector(".order-total span:last-child");
     const commentsField = document.getElementById("comentarios");
     const usuarioIdField = document.getElementById("usuario_id");
-
+    const userId = window.APP_USER_ID || 0;
+    if (usuarioIdField) {
+        usuarioIdField.value = userId;
+    }
     const productFields = [
         {
             product: document.getElementById("producto-1"),
@@ -98,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         logoutButton.addEventListener("click", () => {
             const confirmLogout = confirm("¿Deseas cerrar sesión?");
             if (confirmLogout) {
-                window.location.href = "/index.html";
+                window.location.href = "/logout";
             }
         });
     }
