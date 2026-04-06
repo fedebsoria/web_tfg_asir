@@ -1,59 +1,106 @@
-# web_tfg_asir
+## README.md actualizado
 
-ASIR Final Project: Secure Web Login + Forms Management with Python Backend.
+```
+# 🌐 MundoChip - Web Sales App
 
-## Overview
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.0-green.svg)](https://flask.palletsprojects.com/)
+[![MariaDB](https://img.shields.io/badge/MariaDB-11.x-orange.svg)](https://mariadb.org/)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)](https://github.com/tuusuario/mundochip)
 
-This project is a web application developed as a final project for ASIR.  
-It includes a login screen, a second screen for forms management, a frontend built with HTML, CSS and JavaScript, and a backend developed in Python.
+**App web completa para gestión de ventas con autenticación segura y persistencia en MariaDB.**
 
-## Main Features
+## 🚀 Demo
+```
+Login → Formulario ventas → Guardado con pedido_id → Persistencia BD
+```
+- **Login**: Usuarios con hash scrypt (Werkzeug)
+- **Ventas**: Productos reales de MariaDB, líneas agrupadas por pedido_id
+- **Seguridad**: Sesiones Flask, validación FK, queries parametrizadas
 
-- User login interface
-- Forms page after authentication
-- Frontend structure separated by pages, styles and scripts
-- Python backend for application logic
-- Project organized for maintenance and future improvements
-
-## Project Structure
-
-```text
-WEB/
-├── README.md
-├── README.es.md
-├── index.html
-├── formularios.html
-├── img/
-├── script/
-│   ├── script.js
-│   └── formularios.js
-├── style/
-│   ├── style.css
-│   └── formularios.css
-└── backend/
-    └── back_end.py
+## 🛠️ Tech Stack
+```
+Frontend: HTML5/CSS3/JavaScript (estilo retro-pixel)
+Backend: Flask 3.0 + Werkzeug Security
+Database: MariaDB 11.x (mundoChip schema)
+Deployment: Nginx + UFW + Cloudflared (Ubuntu 24.04)
 ```
 
-## Technologies
+## 📁 Estructura
+```
+web/
+├── index.html           # Login screen
+├── formularios.html     # Sales form
+├── back_end/
+│   └── back_end.py      # Flask API + auth
+│   └── generar_hashes.py # Creates users with hashed password
+├── style/               # CSS (retro theme)
+├── script/              # JS (form handling)
+├── img/                 # Assets
+└── assets/fonts/        # Custom fonts
+```
 
-- HTML5
-- CSS3
-- JavaScript
-- Python
+## 🗄️ Database Schema
+```
+usuarios: id, user_name, password (scrypt hashes)
+productos: id, nombre_producto, precio_recomendado, activo
+ventas: pedido_id, producto_id, cantidad, precio_unitario, usuario_id
+```
 
-## Pages
+## 🎯 Features
+- ✅ Secure login (Werkzeug scrypt)
+- ✅ Real-time product loading from DB
+- ✅ Multi-line sales (pedido_id grouping)
+- ✅ JSON API with validation
+- ✅ Session protection
+- ✅ Transaction safety (commit/rollback)
+- ✅ Error handling
 
-- `index.html`: login screen
-- `formularios.html`: forms management screen after login
+## 🚀 Quick Start (Dev)
 
-## Purpose
+1. **Install dependencies**
+```bash
+pip install flask werkzeug mariadb
+```
 
-The goal of this project is to build a structured and functional web application as part of the ASIR final project, applying frontend and backend development concepts.
+2. **Config DB_CONFIG** (back_end.py)
+```python
+DB_CONFIG = {
+    "user": "DB_USER",
+    "password": "DB_PASSWORD",
+    "database": "DB_NAME"
+}
+```
 
-## Status
+3. **Run**
+```bash
+cd web
+python back_end/back_end.py
+```
+Open [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-Project in development.
+## 🖥️ Production Deployment
+```
+Ubuntu 24.04 → Nginx → Flask (gunicorn) → MariaDB → UFW → Cloudflared
+```
 
-## Notes
+## 🔧 Fixed Issues
+- Jinja rendering (Flask only)
+- Duplicate login() function
+- Session management
+- DB credentials
+- Werkzeug hash truncation
+- Static file serving
 
-This repository may continue evolving with new features, validation improvements, backend integration, and UI enhancements.
+## 📈 Commit History
+```
+feat: complete Flask + MariaDB backend
+feat: secure login with scrypt hashes
+fix: static routes (style/script/img)
+```
+
+## 📄 License
+MIT License - see [LICENSE](LICENSE)
+
+---
