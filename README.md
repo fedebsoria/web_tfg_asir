@@ -7,15 +7,15 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen.svg)](https://github.com/tuusuario/mundochip)
 
-**App web completa para gestión de ventas con autenticación segura y persistencia en MariaDB.**
+**Complete web app for sales management with secure authentication and persistence in MariaDB.**
 
 ## 🚀 Demo
 ```
-Login → Formulario ventas → Guardado con pedido_id → Persistencia BD
+Login → Sales Form → Saved with order_id → Database Persistence
 ```
-- **Login**: Usuarios con hash scrypt (Werkzeug)
-- **Ventas**: Productos reales de MariaDB, líneas agrupadas por pedido_id
-- **Seguridad**: Sesiones Flask, validación FK, queries parametrizadas
+- **Login**: Users with scrypt hash (Werkzeug)
+- **Sales**: Actual MariaDB products, lines grouped by order_id
+- **Security**: Flask sessions, FK validation, parameterized queries
 
 ## 🛠️ Tech Stack
 ```
@@ -25,13 +25,14 @@ Database: MariaDB 11.x (mundoChip schema)
 Deployment: Nginx + UFW + Cloudflared (Ubuntu 24.04)
 ```
 
-## 📁 Estructura
+## 📁 Structure
 ```
 web/
 ├── index.html           # Login screen
 ├── formularios.html     # Sales form
 ├── back_end/
-│   └── back_end.py      # Flask API + auth
+│   ├── .env.example     # Template for environment variables
+│   ├── back_end.py      # Flask API + auth
 │   └── generar_hashes.py # Creates users with hashed password
 ├── style/               # CSS (retro theme)
 ├── script/              # JS (form handling)
@@ -59,16 +60,22 @@ ventas: pedido_id, producto_id, cantidad, precio_unitario, usuario_id
 
 1. **Install dependencies**
 ```bash
-pip install flask werkzeug mariadb
+pip install flask werkzeug mariadb python-dotenv
 ```
 
-2. **Config DB_CONFIG** (back_end.py)
-```python
-DB_CONFIG = {
-    "user": "DB_USER",
-    "password": "DB_PASSWORD",
-    "database": "DB_NAME"
-}
+2. **Configure Environment Variables**
+Copy the template `.env.example` file to `.env` in the `back_end/` directory and configure your credentials:
+```bash
+cp back_end/.env.example back_end/.env
+```
+Inside `back_end/.env`, fill in your database and Flask configuration:
+```ini
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+DB_DATABASE=mundoChip
+FLASK_SECRET_KEY=your_secure_session_key
 ```
 
 3. **Run**

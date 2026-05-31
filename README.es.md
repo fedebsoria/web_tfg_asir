@@ -30,8 +30,10 @@ WEB/
 ├── style/
 │   ├── style.css
 │   └── formularios.css
-└── backend/
-    └── back_end.py
+└── back_end/
+    ├── .env.example
+    ├── back_end.py
+    └── generar_hashes.py
 ```
 
 ## Tecnologías
@@ -39,7 +41,29 @@ WEB/
 - HTML5
 - CSS3
 - JavaScript
-- Python
+- Python (Flask, Werkzeug, MariaDB Connector, python-dotenv)
+
+## Configuración de variables de entorno
+
+1. **Instalar dependencias**:
+   ```bash
+   pip install flask werkzeug mariadb python-dotenv
+   ```
+
+2. **Configurar el archivo `.env`**:
+   Copia el archivo de plantilla `.env.example` en la carpeta `back_end/` y nómbralo `.env`:
+   ```bash
+   cp back_end/.env.example back_end/.env
+   ```
+   Abre el archivo `.env` recién creado y configura tus datos de conexión a MariaDB y la clave secreta de Flask:
+   ```ini
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_USER=usuario_bd
+   DB_PASSWORD=contraseña_bd
+   DB_DATABASE=mundoChip
+   FLASK_SECRET_KEY=tu_clave_secreta_segura
+   ```
 
 ## Páginas
 
