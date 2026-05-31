@@ -3,8 +3,14 @@ from werkzeug.security import check_password_hash
 import mariadb
 from pathlib import Path
 from uuid import uuid4
+import os
+from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Cargar variables de entorno desde el archivo .env en la carpeta back_end
+dotenv_path = Path(__file__).resolve().parent / ".env"
+load_dotenv(dotenv_path)
 
 app = Flask(
     __name__,
@@ -12,16 +18,16 @@ app = Flask(
     static_folder=None
 )
 
-# Secret key for session signing during development.
-# I can move this to an environment variable later for production.
-app.secret_key = "clave_super_segura_para_sesiones_2026"
+# Clave secreta de sesión externalizada
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "clave_super_segura_para_sesiones_2026")
 
+# Configuración de base de datos externalizada
 DB_CONFIG = {
-    "host": "127.0.0.1", # < --- CHANGE THIS. IF THE DB IS NOT LOCAL.
-    "port": 3306, # < --- CHANGE THIS. TO THE DB PORT.
-    "user": "DB_USER", # < --- CHANGE THIS. PUT THE ACTUAL USER OF THE DB.
-    "password": "DB_PASSWORD", # < -- CHANGE THIS. PUT THE USER'S DB PASSWORD.
-    "database": "DB_NAME" # < -- CHANGE THIS. PUT THE DB NAME.
+    "host": os.environ.get("DB_HOST", "127.0.0.1"),
+    "port": int(os.environ.get("DB_PORT", 3306)),
+    "user": os.environ.get("DB_USER", "ventas_user"),
+    "password": os.environ.get("DB_PASSWORD", ""),
+    "database": os.environ.get("DB_DATABASE", "mundoChip")
 }
 
 
@@ -291,5 +297,7 @@ def guardar_venta():
 
 
 if __name__ == "__main__":
-    # Debug mode is useful while I am still finishing the project.
-    app.run(debug=True, host="127.0.0.1", port=5000)
+    # Permite configurar el host y puerto desde el archivo .env
+    host = os.environ.get("FLASK_HOST", "127.0.0.1")
+    port = int(os.environ.get("FLASK_PORT", 5000))
+    app.run(debug=True, host=host, port=port)
